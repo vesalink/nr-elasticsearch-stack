@@ -9,12 +9,12 @@ es-master: &es
     master: "true"
     ingest: "false"
     data: "false"
-  replicas: 3
+  replicas: 2
   resources:
     requests:
       cpu: 500m
     limits:
-      cpu: 1000m
+      cpu: 700m
   securityContext: null
   podSecurityContext: null
   sysctlInitContainer:
@@ -62,7 +62,7 @@ es-master: &es
 
 es-ingest:
   <<: *es
-  replicas: 2
+  replicas: 1
   nodeGroup: ingest
   roles:
     master: "false"
@@ -71,7 +71,7 @@ es-ingest:
 
 es-data:
   <<: *es
-  replicas: 4
+  replicas: 1
   nodeGroup: data
   roles:
     master: "false"
